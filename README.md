@@ -1,25 +1,33 @@
-*NOTE:* This file is a template that you can use to create the README for your project. The *TODO* comments below will highlight the information you should be sure to include.
 
-# Your Project Title Here
+# Capstone Project for the Azure ML Engineer Program by Udacity
 
-*TODO:* Write a short introduction to your project.
+The goal of this project is to develop two different ML models using the Azure ML platform, and then, deploying the best one as a web service. First, a Scikit-learn model will be developed and tuned using the Python SDK and HyperDrive respectively. Once this model is optimized, its results are compared with a model generated from the Automated ML Azure service, and the one with the best performance is deployed to the web.
 
-## Project Set Up and Installation
-*OPTIONAL:* If your project has any special installation steps, this is where you should put it. To turn this project into a professional portfolio project, you are encouraged to explain how to set up this project in AzureML.
+## Project Overview
+
+The process flow followed in the project is illustrated below:
+
+<img src=".\images\Project Workflow.jpg">
 
 ## Dataset
 
 ### Overview
-*TODO*: Explain about the data you are using and where you got it from.
+
+The dataset used to develop both models comes from Kaggle datasets. It deals with heart failures, bringing information on 12 categorical and numerical features which can be used to forecast mortality rates by cardiovascular diseases (CVDs). Additionally, The dataset has a total of 299 observations.
 
 ### Task
-*TODO*: Explain the task you are going to be solving with this dataset and the features you will be using for it.
+
+As it was mentioned previously, this data is going to be used to predict heart failures caused by CVDs, in order to provide an early detection ML model using the 12 clinical variables included in the dataset. A brief summary of these features is the following:
+
+<img src=".\images\Dataset Features.jpg">
 
 ### Access
-*TODO*: Explain how you are accessing the data in your workspace.
-
+For training the AutoML model, I registered the dataset from local files using the Datasets Hub in the Azure ML Studio.
+<br><img src=".\images\Dataset.jpg"><br>
+By contrast, I used the following dataset url from github for training the customised model using HyperDrive: https://github.com/htrismicristo/Capstone-Project-Azure-ML-Engineer-Microsoft-Udacity/blob/main/heart_failure_clinical_records_dataset.csv
+<br><img src=".\images\Dataset Exploration.jpg"><br>
 ## Automated ML
-*TODO*: Give an overview of the `automl` settings and configuration you used for this experiment
+
 
 ### Results
 *TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
@@ -44,5 +52,3 @@
 - Demo of the deployed  model
 - Demo of a sample request sent to the endpoint and its response
 
-## Standout Suggestions
-*TODO (Optional):* This is where you can provide information about any standout suggestions that you have attempted.
