@@ -29,7 +29,6 @@ By contrast, I used the following dataset url from github for training the custo
 
 ## Automated ML
 In overview, the following were the main settings and parameters used for the AutoML model on the Azure platform:<br>
-<br>
 * n_cross_validations = 5. It sets the number of cross validations to carry out.
 * iterations = 30. It specifies how many algorithm and parameter combinations to test during the experiment.
 * max_concurrent_iterations = 4. It represents the maximum number of iterations that could be performed in parallel.
@@ -44,15 +43,15 @@ After running the experiment using AutoML, the best model found was the Voting E
 Accuracy: <br>
 <br>The model parameters include:<br>
 <br>
-*Random State = None. To validate our results over multiple runs this value should remain steady.
-*Reg_alpha = . To moderate the model predictions we can increase this value.
-*Reg_lambda = . The L2 regularization term for tackling overfitting.
-*Silent = True.
-*Verbose = -10.
-*Robustscaler = True.
-*Quantile Range = [25, 75].
-*with_centering = True.
-*with_scaling = False.
+* Random State = None. To validate our results over multiple runs this value should remain steady.
+* Reg_alpha = . To moderate the model predictions we can increase this value.
+* Reg_lambda = . The L2 regularization term for tackling overfitting.
+* Silent = True.
+* Verbose = -10.
+* Robustscaler = True.
+* Quantile Range = [25, 75].
+* with_centering = True.
+* with_scaling = False.
 <br>
 The LightGBM algorithm was surpassed by the VotingEnsemble model, despite having an accuracy of 0.8060.
 
