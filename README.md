@@ -26,13 +26,36 @@ For training the AutoML model, I registered the dataset from local files using t
 <br><img src=".\images\Dataset.jpg"><br>
 By contrast, I used the following dataset url from github for training the customised model using HyperDrive: https://github.com/htrismicristo/Capstone-Project-Azure-ML-Engineer-Microsoft-Udacity/blob/main/heart_failure_clinical_records_dataset.csv
 <br><img src=".\images\Dataset Exploration.jpg"><br>
-## Automated ML
 
+## Automated ML
+In overview, the following were the main settings and parameters used for the AutoML model on the Azure platform:<br>
+<br>
+* n_cross_validations = 5. It sets the number of cross validations to carry out.
+* iterations = 30. It specifies how many algorithm and parameter combinations to test during the experiment.
+* max_concurrent_iterations = 4. It represents the maximum number of iterations that could be performed in parallel.
+* primary_metric = Accuracy. This is the metric which will be optimized for model training and selection.
+* target column = DEATH_EVENT. Whether the patient died from a heart failure or not.
+* task = classification. Based on the project's goal and the nature of the data, the task is clearly a classification one.
+* experiment_timeout_minutes = 30. It determines the maximum amount of time all iterations can take before the experiment terminates. 
 
 ### Results
-*TODO*: What are the results you got with your automated ML model? What were the parameters of the model? How could you have improved it?
+After running the experiment using AutoML, the best model found was the Voting Ensemble one. This algorithm is known for combining multiple models to enhance its performance. This ensemble model makes use of the weighted average of predicted class probabilities to give a final prediction.<br>
+<br>Best run id: <br>
+Accuracy: <br>
+<br>The model parameters include:<br>
+<br>
+*Random State = None. To validate our results over multiple runs this value should remain steady.
+*Reg_alpha = . To moderate the model predictions we can increase this value.
+*Reg_lambda = . The L2 regularization term for tackling overfitting.
+*Silent = True.
+*Verbose = -10.
+*Robustscaler = True.
+*Quantile Range = [25, 75].
+*with_centering = True.
+*with_scaling = False.
+<br>
+The LightGBM algorithm was surpassed by the VotingEnsemble model, despite having an accuracy of 0.8060.
 
-*TODO* Remeber to provide screenshots of the `RunDetails` widget as well as a screenshot of the best model trained with it's parameters.
 
 ## Hyperparameter Tuning
 *TODO*: What kind of model did you choose for this experiment and why? Give an overview of the types of parameters and their ranges used for the hyperparameter search
