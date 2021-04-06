@@ -24,7 +24,7 @@ As it was mentioned previously, this data is going to be used to predict heart f
 ### Access
 For training the AutoML model, I registered the dataset from local files using the Datasets Hub in the Azure ML Studio.
 <br><img src=".\images\Dataset.jpg"><br>
-By contrast, I used the following dataset url from github for training the customised model using HyperDrive: https://github.com/htrismicristo/Capstone-Project-Azure-ML-Engineer-Microsoft-Udacity/blob/main/heart_failure_clinical_records_dataset.csv
+By contrast, I used the following dataset url from github for training the customised model using HyperDrive: https://raw.githubusercontent.com/htrismicristo/Capstone-Project-Azure-ML-Engineer-Microsoft-Udacity/main/heart_failure_clinical_records_dataset.csv
 <br><img src=".\images\Dataset Exploration.jpg"><br>
 
 ## Automated ML
@@ -39,8 +39,8 @@ In overview, the following were the main settings and parameters used for the Au
 
 ### Results
 After running the experiment using AutoML, the best model found was the Voting Ensemble one. This algorithm is known for combining multiple models to enhance its performance. This ensemble model makes use of the weighted average of predicted class probabilities to give a final prediction.<br>
-<br>Best run id: <br>
-Accuracy: <br>
+<br>Best run id: AutoML_f4ca9563-54fa-43f1-8ecf-2a7898a06229_28<br>
+Accuracy: 0.8763276836158193<br>
 <br>The model parameters include:<br>
 * Random State = None. To validate our results over multiple runs this value should remain steady.
 * Reg_alpha = . To moderate the model predictions we can increase this value.
@@ -51,8 +51,24 @@ Accuracy: <br>
 * Quantile Range = [25, 75].
 * with_centering = True.
 * with_scaling = False.
-The LightGBM algorithm was surpassed by the VotingEnsemble model, despite having an accuracy of 0.8060.
+The StackEnsemble algorithm was surpassed by the VotingEnsemble model, despite having an accuracy of 0.8060.
 
+### Metrics
+<img src=".\images\automl metrics.jpg">
+
+### AutoML run details
+<img src=".\images\automl details 1.jpg">
+<img src=".\images\automl details 2.jpg">
+<img src=".\images\automl details 3.jpg">
+
+### Run details widget
+<img src=".\images\run details widget.jpg">
+
+### Best model details
+<img src=".\images\best automl details.jpg">
+
+### Registered model details
+<img src=".\images\registered automl details.jpg">
 
 ## Hyperparameter Tuning
 
@@ -72,16 +88,28 @@ A BanditPolicy was used to improve the computational efficiency, terminating ear
 * The evaluation interval = 2. It determines the frequency in which the policy will be applied.
 * The slack factor = 0.1. It specifies the allowed distance from the best performing run. The runs whose best metric is less than (primary metric of best performing run at given interval/(1+slack factor)) will be terminated.
 
+### Run details widget
+<img src=".\images\run details widget 2.jpg">
 
 ### Results
 After running the experiment using hyperdrive and the hyperparameter settings mentioned above, the following results were obtained:
-<br>Best run id: <br>
-Accuracy: <br>
+<br>Best run id: HD_18c162a5-c82b-40ea-9796-88afff5fa020_1<br>
+Accuracy: 0.8833333333333333<br>
+<img src=".\images\hd metrics.jpg">
+<br>
+**NOTE**: it may be required to submit the experiment several times in order to get more accurate results, since we are using a random parameter sampler and we may get distinct parameters each time.
 
 ### Model Comparison
 For the task of predicting heart failure using a dataset from Kaggle, there is no doubt that the model trained using HyperDrive was more accurate than the model trained using AutoML. On top of that, the execution time was lower using HyperDrive than AutoML, since just one model was evaluated in the first approach compared with the multiple models tried by AutoML. In summary, despite the higher effort required in the former, it appears that HyperDrive could lead to better results whenever the model and the hyperparameter settings are chosen wisely beforehand.
 
+### Registered model details
+<img src=".\images\registered hd details.jpg">
+
+### Experiments 
+<img src=".\images\experiments.jpg">
+
 ## Model Deployment
+<img src=".\images\web service.jpg">
 Once both models were compared, the Hyperdrive model was chosen to be deployed as a web service. The following were the deployment steps:<br>
 * A scoring script was defined.
 * A new environment was created from conda dependencies previously specified.
@@ -89,8 +117,10 @@ Once both models were compared, the Hyperdrive model was chosen to be deployed a
 * A deployment configuration was set with 1 cpu core and 1 GB RAM.
 * The model, inference and deployment configuration was specified, along with the name and deployment location of the web service.
 * Once deployed, the scoring URI was obtained.
-* Data from the endpoint.py and the scoring URI was used to query the endpoint.
+* Data from the endpoint.py script and the scoring URI was used to query the endpoint.
+<img src=".\images\endpoint.jpg">
 * The logs of the service were obtained.
+<img src=".\images\service logs.jpg">
 
 ## Future improvements
 

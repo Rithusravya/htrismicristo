@@ -3,12 +3,15 @@ import numpy as np
 import os
 from sklearn.externals import joblib
 from azureml.core import Model
-import joblib, pickle
+import joblib
+import pickle
+
 
 def init():
     global model
-    model_path = Model.get_model_path('best_hyper_model')
+    model_path = Model.get_model_path('bestHpModel')
     model = joblib.load(model_path)
+
 
 def run(data):
     try:
